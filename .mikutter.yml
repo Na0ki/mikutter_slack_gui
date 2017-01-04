@@ -1,0 +1,9 @@
+---
+slug: :slack_gui
+depends:
+  mikutter: 3.6.0
+  plugin: []
+version: 0.0.1
+author: ahiru
+name: slack_gui
+description: GUI for slack plugin on mikutter
