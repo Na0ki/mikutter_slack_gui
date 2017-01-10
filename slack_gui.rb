@@ -29,6 +29,12 @@ Plugin.create(:slack_gui) do
   end
 
 
+  def image(display_url)
+    connection = HTTPClient.new
+    connection.get_content(display_url, 'Authorization' => "Bearer #{UserConfig['slack_token']}")
+  end
+
+
   # コマンド登録
   # コマンドのslugはpost_to_slack_#{チーム名}_#{チャンネル名}の予定
   command(:post_to_slack,
