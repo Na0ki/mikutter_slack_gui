@@ -17,6 +17,22 @@ Plugin.create(:slack_gui) do
   defactivity 'slack_connection', 'Slack接続情報'
 
 
+  intent :slack_channel, label: 'Slack Channelを開く' do |intent_token|
+    channel = intent_token.model
+    tab(:"slack_temporary_channel_tab_#{channel.id}") do
+      temporary_tab
+      set_deletable true
+      self.name = channel.name
+      timeline :"slack_temporary_channel_timeline_#{channel.id}"
+    end
+    channel.history.next{|messages|
+      timeline(:"slack_temporary_channel_timeline_#{channel.id}") << messages
+    }.trap{|err|
+      error err
+    }
+  end
+
+
   # 接続時
   on_slack_connected do |auth|
     activity :slack_connection, "Slackチーム #{auth['team']} の認証に成功しました！"
