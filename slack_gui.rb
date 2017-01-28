@@ -6,8 +6,8 @@ Plugin.create(:slack_gui) do
   # 実績設定
   # @see http://mikutter.blogspot.jp/2013/03/blog-post.html
   defachievement(:slack_achieve,
-                 description: '設定画面からSlackのトークンを設定しよう',
-                 hint: "Slackのトークンを取得して設定しよう！\nhttps://api.slack.com/docs/oauth-test-tokens"
+                 description: '設定画面からSlackの認証をしよう',
+                 hint: 'mikutterの設定を開いてslackの認証ボタンを押そう！'
   ) do |achievement|
     on_slack_connected { |_| achievement.take! }
   end
