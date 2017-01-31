@@ -19,17 +19,21 @@ Plugin.create(:slack_gui) do
 
   intent :slack_channel, label: 'Slack Channelを開く' do |intent_token|
     channel = intent_token.model
-    tab(:"slack_temporary_channel_tab_#{channel.id}") do
-      temporary_tab
-      set_deletable true
-      self.name = channel.name
-      timeline :"slack_temporary_channel_timeline_#{channel.id}"
+    tab_slug = :"slack_temporary_channel_tab_#{channel.id}"
+    if Plugin::GUI::Tab.exist?(tab_slug)
+      Plugin::GUI::Tab.instance(tab_slug).active!
+    else
+      tab(tab_slug, channel.name) do
+        temporary_tab
+        set_deletable true
+        timeline(:"slack_temporary_channel_timeline_#{channel.id}")
+        active!
+      end
     end
-    channel.history.next{|messages|
+
+    channel.history.next { |messages|
       timeline(:"slack_temporary_channel_timeline_#{channel.id}") << messages
-    }.trap{|err|
-      error err
-    }
+    }.trap { |e| error e }
   end
 
 
