@@ -4,6 +4,7 @@ depends:
   mikutter: 3.5.0
   plugin:
     - activity
+    - slack
 version: 0.0.1
 author: ahiru
 name: slack_gui
