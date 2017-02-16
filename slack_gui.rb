@@ -44,8 +44,8 @@ Plugin.create(:slack_gui) do
 
 
   # 接続失敗時
-  on_slack_connection_failed do |auth|
-    activity :slack_connection, "Slackチーム #{auth['team']} の認証に失敗しました！"
+  on_slack_connection_failed do |error|
+    activity :slack_connection, "Slackチームの認証に失敗しました！: #{error} "
   end
 
 
