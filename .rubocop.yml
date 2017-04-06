@@ -1,10 +1,7 @@
 Style/AsciiComments:
-  Description: 'Use only ascii symbols in comments.'
-  StyleGuide: '#english-comments'
   Enabled: false
 
 Metrics/BlockLength:
-  Description: 'Avoid long blocks with many lines.'
   Enabled: false
 
 Metrics/LineLength:
@@ -14,12 +11,19 @@ Metrics/LineLength:
   Enabled: true
 
 Style/GlobalVars:
-  Description: 'Do not introduce global variables.'
-  StyleGuide: '#instance-vars'
-  Reference: 'http://www.zenspider.com/Languages/Ruby/QuickRef.html'
   Enabled: false
 
 Style/MultilineBlockChain:
-  Description: 'Avoid multi-line chains of blocks.'
-  StyleGuide: '#single-line-blocks'
+  Enabled: false
+
+Style/BlockDelimiters:
+  Enabled: false
+
+Metrics/MethodLength:
+  Enabled: false
+
+Metrics/AbcSize:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
   Enabled: false
