@@ -1,4 +1,7 @@
 # -*- coding: utf-8 -*-
+# -*- frozen_string_literal: true -*-
+
+require 'httpclient'
 
 Plugin.create(:slack_gui) do
   # 実績設定
@@ -41,9 +44,18 @@ Plugin.create(:slack_gui) do
     activity :slack_connection, "Slackチームの認証に失敗しました！: #{error} "
   end
 
-  def image(display_url)
-    connection = HTTPClient.new
-    connection.get_content(display_url, 'Authorization' => "Bearer #{UserConfig['slack_token']}")
+  # Slack のファイルを取得する
+  def get_file(url)
+    conn = HTTPClient.new
+    header = { 'Authorization': "Bearer #{UserConfig['slack_token']}" }
+    conn.get(url, nil, header)
+  end
+
+  # Slack の画像を開く
+  defimageopener('slack', %r{^https?:\/\/.+\.slack\.com\/[a-zA-Z0-9]+}) do |url|
+    res = get_file(url)
+    next nil if res.ok?
+    open(res.body.to_s)
   end
 
   # コマンド登録
