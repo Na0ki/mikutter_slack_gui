@@ -54,8 +54,8 @@ Plugin.create(:slack_gui) do
   # Slack の画像を開く
   defimageopener('slack', %r{^https?:\/\/.+\.slack\.com\/[a-zA-Z0-9]+}) do |url|
     res = get_file(url)
-    next nil if res.ok?
-    open(res.body.to_s)
+    next nil unless res.ok?
+    StringIO.new(res.body)
   end
 
   # コマンド登録
