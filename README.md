@@ -1,12 +1,8 @@
 # mikutter_slack_gui
 [mikutter_slack](https://github.com/Na0ki/mikutter_slack) プラグインの GUI を提供するプラグイン
 
----
-
 ## 依存関係
 [mikutter_slack](https://github.com/Na0ki/mikutter_slack)
-
----
 
 ## 要件
 *要件を満たしているなら動くとは言っていない*
@@ -29,7 +25,6 @@ mikutterのgitリポジトリURLはこちら -> git://toshia.dip.jp/mikutter.git
 |mikutter_slack |        0.1.0|
 
 
----
-
 ## ライセンス
 このプラグインは [MIT License](/LICENSE) によって浄化されています。
+
